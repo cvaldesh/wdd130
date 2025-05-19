@@ -1,24 +1,42 @@
+:root {
+    --main-blue: darkblue;
+    --link-color: white;
+    --light-gray: #eee;
+    --dark-gray: #333;
+    --border-color: black;
+    --shadow-color: gray;
+    --main-padding: 10px;
+    --link-padding: 20px;
+    --image-width: 150px;
+    --aside-width: 20rem;
+    --aside-margin: 1rem;
+    --aside-border: rgb(0, 0, 255);
+    --aside-padding: 1rem;
+    --footer-border: #000;
+    --main-max-width: 840px;
+}
+
 nav {
-    background-color: darkblue;
-    padding: 10px;
+    background-color: var(--main-blue);
+    padding: var(--main-padding);
 }
 
 nav a {
-    color: white;
+    color: var(--link-color);
     display: block;
-    padding: 20px;
+    padding: var(--link-padding);
 }
 
 h1 {
-    color: darkblue;
+    color: var(--main-blue);
 }
 
 img {
-    width: 150px;
+    width: var(--image-width);
     height: auto;
-    border: 1px solid black;
+    border: 1px solid var(--border-color);
     padding: 2px;
-    box-shadow: 0 0 30px gray;
+    box-shadow: 0 0 30px var(--shadow-color);
 }
 
 p {
@@ -26,16 +44,16 @@ p {
 }
 
 main {
-    max-width: 840px;
+    max-width: var(--main-max-width);
 }
 
 aside {
-    width: 20rem;
-    margin: 1rem;
-    border: 1px solid rgb(0, 0, 255); /* Changed to blue using rgb */
-    padding: 1rem;
-    background-color: #eee;
-    color: #333;
+    width: var(--aside-width);
+    margin: var(--aside-margin);
+    border: 1px solid var(--aside-border);
+    padding: var(--aside-padding);
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
     text-align: center;
 }
 
@@ -45,12 +63,12 @@ aside img {
 }
 
 main img {
-    width: 150px;
+    width: var(--image-width);
     height: auto;
 }
 
 footer {
     margin-top: 15px;
-    border-top: 1px solid #000;
+    border-top: 1px solid var(--footer-border);
     text-align: center;
 }

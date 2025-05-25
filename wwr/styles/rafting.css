@@ -115,12 +115,12 @@ article img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    /* Feedback: Image associated with hero paragraph is floated to the right */
     float: right;
     margin-left: 1.5rem; /* Space between image and text */
     margin-bottom: 0.5rem; /* Small margin below if text wraps */
-    shape-outside: circle(50%); /* For text wrapping around non-rectangular images */
-    clip-path: circle(50%); /* To make the image effectively round for text wrapping */
+    /* Removed shape-outside and clip-path to pass validator */
+    /* shape-outside: circle(50%); */
+    /* clip-path: circle(50%); */
 }
 
 article p {
@@ -184,7 +184,7 @@ footer p {
 }
 
 .socialmedia a {
-    text-decoration: none; /* Feedback: Image links for social media icons do not have text-decoration. */
+    text-decoration: none; /* Image links for social media icons do not have text-decoration. */
 }
 
 .socialmedia img {

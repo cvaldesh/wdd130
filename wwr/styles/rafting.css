@@ -28,15 +28,15 @@ header, main, footer {
     padding: 1rem;
 }
 
-/* Header Styling */
+/* Header Styling - Using CSS Grid as instructed */
 header {
     background-color: var(--primary-color);
     color: white;
-    display: flex;
-    justify-content: space-between;
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: auto 1fr; /* Logo takes auto width, nav takes remaining space */
     align-items: center;
     padding: 1rem 2rem;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 1rem; /* Space between logo and nav */
 }
 
 header img {
@@ -46,10 +46,10 @@ header img {
 }
 
 header nav {
-    display: flex;
+    display: flex; /* Use CSS Flex for navigation links as instructed */
     gap: 1.5rem; /* Space between nav links */
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end; /* Pushes nav links to the right */
 }
 
 header nav a {
@@ -71,7 +71,7 @@ header nav a:hover {
     width: 100%;
     height: 50vh; /* Responsive height: 50% of viewport height */
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Keep existing margin bottom */
 }
 
 .hero img {
@@ -82,26 +82,54 @@ header nav a:hover {
     object-position: center; /* Center the image within its content box */
 }
 
-.hero h1 {
-    position: absolute; /* Already correctly positioned over the hero image */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white; /* Contrasting color for text */
-    font-family: var(--heading-font);
-    font-size: 3rem; /* Large font size */
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    white-space: nowrap; /* Prevent text from wrapping too early */
-    z-index: 2; /* Ensure h1 is above the image */
+.hero-content { /* New container to manage h1 and article positioning */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    padding: 1rem; /* Add some padding to prevent content from touching edges */
+    text-align: center; /* Center text within its containers */
+    z-index: 2; /* Ensure content is above the image */
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
 }
 
-/* Main Content Sections */
-article {
+.hero-content h1 {
+    position: static; /* Reset absolute positioning, now handled by flex parent */
+    transform: none; /* Reset transform */
+    color: white;
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.6); /* Still good for h1 specific background */
+    margin-bottom: 1rem; /* Space between h1 and article */
+}
+
+/* Mission Statement now styled as an overlay element */
+.mission-statement-overlay {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for readability */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    max-width: 80%; /* Limit width of the text block */
+    color: #333; /* Dark text on light background */
+    text-align: center; /* Center text within the box */
+}
+
+.mission-statement-overlay p {
+    margin: 0; /* Remove default paragraph margin */
+    text-align: center; /* Ensure text is centered within the overlay */
+}
+
+/* Removed previous .mission-statement styles as they are now .mission-statement-overlay */
+/* .mission-statement {
     display: flex;
-    flex-direction: column; /* Stack on small screens */
+    flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
@@ -111,32 +139,57 @@ article {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-article img {
+.mission-statement img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     float: right;
-    margin-left: 1.5rem; /* Space between image and text */
-    margin-bottom: 0.5rem; /* Small margin below if text wraps */
-    /* Removed shape-outside and clip-path to pass validator */
-    /* shape-outside: circle(50%); */
-    /* clip-path: circle(50%); */
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-article p {
+.mission-statement p {
     text-align: justify;
-    overflow: hidden; /* Clear floats for content after the image */
-}
+    overflow: hidden;
+} */
 
-section {
+
+/* History Section Styling - Adjusted for two paragraphs and an image */
+.history-section {
     margin-bottom: 2rem;
     background-color: #f9f9f9;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: grid; /* Use grid for structured layout */
+    grid-template-columns: 1fr; /* Default to single column for small screens */
+    gap: 1.5rem;
+    align-items: center;
 }
 
-h2 {
+.history-section h2 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem; /* Reduced margin */
+    text-align: center;
+    grid-column: 1 / -1; /* Span full width in grid */
+}
+
+.history-section p {
+    text-align: justify;
+}
+
+.history-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block; /* Ensure image behaves like a block element */
+    margin: 0 auto; /* Center image in its grid cell */
+}
+
+/* Adventure Section */
+.adventure-section h2 {
     font-family: var(--heading-font);
     color: var(--primary-color);
     font-size: 2rem;
@@ -151,12 +204,24 @@ h2 {
     gap: 1rem;
 }
 
+.grid-container figure {
+    margin: 0; /* Reset default figure margin */
+    text-align: center;
+}
+
 .grid-container img {
     width: 100%;
     height: 180px; /* Fixed height for grid images */
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.grid-container figcaption {
+    font-family: var(--paragraph-font);
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
 }
 
 /* Footer Styling */
@@ -184,7 +249,7 @@ footer p {
 }
 
 .socialmedia a {
-    text-decoration: none; /* Image links for social media icons do not have text-decoration. */
+    text-decoration: none;
 }
 
 .socialmedia img {
@@ -200,15 +265,48 @@ footer p {
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
-    article {
-        flex-direction: row; /* Row layout on larger screens */
+    /* Adjustments for the hero content on larger screens */
+    .hero-content h1 {
+        font-size: 4rem; /* Larger font for hero H1 on desktop */
     }
-    article img {
-        width: 30%; /* Adjust width for larger screens */
+    .mission-statement-overlay {
+        max-width: 60%; /* Make the text block narrower on desktop */
     }
-    article p {
-        width: 70%;
+
+
+    /* Original mission statement styles (if not moved to hero)
+    .mission-statement {
+        flex-direction: row;
     }
+    .mission-statement img {
+        width: 30%;
+    }
+    .mission-statement p {
+        flex-grow: 1;
+    }
+    */
+
+    .history-section {
+        grid-template-columns: 1fr auto 1fr; /* Two text columns, image in the middle */
+    }
+
+    .history-section h2 {
+        grid-column: 1 / -1; /* Span full width at the top */
+    }
+
+    .history-section p:first-of-type {
+        grid-column: 1 / 2; /* First paragraph in first column */
+    }
+
+    .history-section img {
+        grid-column: 2 / 3; /* Image in second column */
+        margin: 0; /* Remove auto margin */
+    }
+
+    .history-section p:last-of-type {
+        grid-column: 3 / 4; /* Second paragraph in third column */
+    }
+
     .socialmedia {
         margin-top: 0; /* Remove top margin on larger screens */
     }
@@ -216,14 +314,20 @@ footer p {
 
 @media (max-width: 600px) {
     header {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Stack logo and nav vertically */
+        justify-items: center; /* Center items horizontally */
     }
     header nav {
         margin-top: 1rem;
+        justify-content: center; /* Center nav links when stacked */
     }
     .hero h1 {
         font-size: 2rem; /* Smaller font on small screens */
         padding: 0.5rem 1rem;
+    }
+    .mission-statement-overlay {
+        padding: 1rem; /* Smaller padding on small screens */
+        font-size: 0.9rem; /* Smaller font for overlay text */
     }
     footer {
         flex-direction: column;

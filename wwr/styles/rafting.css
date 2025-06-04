@@ -28,7 +28,7 @@ header, main, footer {
     padding: 1rem;
 }
 
-/* --- Common Section Styles --- */
+/* --- Common Section Styles (Classes to be added to HTML elements) --- */
 /* This new class consolidates repeated background, padding, border-radius, and box-shadow */
 .section-box {
     padding: 1.5rem;
@@ -46,10 +46,11 @@ header, main, footer {
 }
 
 /* --- Common Heading Styles --- */
+/* Consolidated common heading properties */
 h1, h2 {
     font-family: var(--heading-font);
     color: var(--primary-color);
-    text-align: center;
+    text-align: center; /* Common for all major headings */
 }
 
 /* Header Styling - Using CSS Grid as instructed */
@@ -123,10 +124,10 @@ header nav a:hover {
 }
 
 .hero-content h1 {
-    /* Specific overrides for hero h1 */
+    /* Specific overrides for hero h1, using common h1 style for font/color */
     position: static;
     transform: none;
-    color: white;
+    color: white; /* Override common h1 color for hero */
     font-size: 3rem;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -136,7 +137,8 @@ header nav a:hover {
 
 /* Mission Statement now styled as an overlay element */
 .mission-statement-overlay {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for readability */
+    /* Specific styling, may share some with .white-section-box but rgba is unique */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -150,7 +152,7 @@ header nav a:hover {
     text-align: center;
 }
 
-/* History Section Styling */
+/* History Section Styling - relies on .section-box in HTML */
 .history-section {
     margin-bottom: 2rem;
     display: grid;
@@ -158,17 +160,9 @@ header nav a:hover {
     gap: 1.5rem;
     align-items: center;
 }
-/* Applying the common section style */
-.history-section.section-box { /* Added .section-box to the history section in HTML */
-    padding: 1.5rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
 
 .history-section h2 {
-    font-size: 2rem;
+    font-size: 2rem; /* Specific override */
     margin-bottom: 0.5rem;
     grid-column: 1 / -1;
 }
@@ -187,7 +181,7 @@ header nav a:hover {
 
 /* Adventure Section */
 .adventure-section h2 {
-    font-size: 2rem;
+    font-size: 2rem; /* Specific override */
     margin-bottom: 1rem;
 }
 
@@ -220,17 +214,14 @@ header nav a:hover {
 
 /* --- STYLES FOR CONTACT.HTML --- */
 
+/* Contact Info Section - relies on .section-box in HTML */
 .contact-info {
     text-align: center;
     margin-bottom: 2rem;
 }
-/* Applied .section-box */
-.contact-info.section-box {
-    background-color: #f9f9f9;
-}
 
 .contact-info h1 {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Specific override */
     margin-bottom: 1rem;
 }
 
@@ -262,17 +253,13 @@ header nav a:hover {
     border: 0;
 }
 
+/* Employee Profiles Section - relies on .white-section-box in HTML */
 .employee-profiles {
     margin-bottom: 2rem;
 }
-/* Applied .white-section-box */
-.employee-profiles.white-section-box {
-    background-color: #fff;
-}
-
 
 .employee-profiles h2 {
-    font-size: 2rem;
+    font-size: 2rem; /* Specific override */
     margin-bottom: 1.5rem;
 }
 
@@ -288,7 +275,7 @@ header nav a:hover {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    text-align: center; /* Ensures figcaption is centered too */
+    text-align: center;
 }
 
 .team-grid img {
@@ -307,17 +294,13 @@ header nav a:hover {
     font-size: 1rem;
 }
 
+/* Contact Form Section - relies on .section-box in HTML */
 .contact-form {
     margin-bottom: 2rem;
 }
-/* Applied .section-box */
-.contact-form.section-box {
-    background-color: #f9f9f9;
-}
-
 
 .contact-form h2 {
-    font-size: 2rem;
+    font-size: 2rem; /* Specific override */
     margin-bottom: 1.5rem;
 }
 
@@ -329,7 +312,7 @@ header nav a:hover {
     margin: 0 auto;
 }
 
-/* Grouping common input styles */
+/* Grouped styles for text/email inputs and textarea */
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
@@ -350,7 +333,6 @@ header nav a:hover {
     margin-bottom: 0.25rem;
     color: var(--accent2-color);
 }
-
 
 .contact-form fieldset {
     border: 1px solid #ccc;

@@ -1,9 +1,9 @@
-/* CSS Variables for Rafting Site */
+/* CSS Variables for Rafting Site - Updated for Accessibility (AA) */
 :root {
-    --primary-color: #2667FF; /* Neon */
-    --secondary-color: #87BFFF; /* Jordy */
-    --accent1-color: #FF5F00; /* Bright */
-    --accent2-color: #3B28CC; /* Chrysler Blue */
+    --primary-color: #2C3E50; /* Dark Slate Blue/Grey - for text on light backgrounds, or background with light text */
+    --secondary-color: #ECF0F1; /* Light Grey/Off-White - for backgrounds */
+    --accent1-color: #E67E22; /* Carrot Orange - for calls to action */
+    --accent2-color: #3498DB; /* Peter River Blue - for secondary accents/links */
     --heading-font: 'Oswald', sans-serif;
     --paragraph-font: 'Open Sans', sans-serif;
 }
@@ -18,7 +18,8 @@
 body {
     font-family: var(--paragraph-font);
     line-height: 1.6;
-    color: #333; /* A neutral dark color for general text */
+    color: var(--primary-color); /* Use primary color for general text for consistency */
+    background-color: var(--secondary-color); /* Light background for the whole body */
 }
 
 /* Layout Container */
@@ -29,45 +30,48 @@ header, main, footer {
 }
 
 /* --- Common Section Styles (Classes to be added to HTML elements) --- */
-/* This new class consolidates repeated background, padding, border-radius, and box-shadow */
 .section-box {
     padding: 1.5rem;
-    background-color: #f9f9f9;
+    background-color: #ffffff; /* Explicitly white for sections within main for contrast */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Slightly more prominent shadow */
+    margin-bottom: 2rem; /* Add margin to separate sections */
 }
 
 /* Applies to specific sections that use a white background */
+/* Renamed to avoid confusion with section-box, as section-box now handles white background too */
 .white-section-box {
     background-color: #fff;
     padding: 1.5rem; /* Consistent padding */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 /* --- Common Heading Styles --- */
-/* Consolidated common heading properties */
-h1, h2 {
+h1, h2, h3 { /* Added h3 for trip card titles */
     font-family: var(--heading-font);
-    color: var(--primary-color);
+    color: var(--primary-color); /* Consistent heading color */
     text-align: center; /* Common for all major headings */
+    margin-bottom: 1rem; /* Added margin for better spacing */
 }
 
-/* Header Styling - Using CSS Grid as instructed */
+/* Header Styling */
 header {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Dark header background */
     color: white;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
     padding: 1rem 2rem;
-    gap: 1rem;
+    gap: 1.5rem; /* Increased gap */
 }
 
 header img {
     height: 80px;
     width: auto;
     border-radius: 50%;
+    border: 2px solid var(--accent2-color); /* Add a subtle border */
 }
 
 header nav {
@@ -83,23 +87,24 @@ header nav a {
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 header nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--accent2-color); /* Hover effect with accent color */
+    color: white;
 }
 
-/* Hero Section (from about.html - retained for other pages) */
-.hero {
+/* Hero Section (from about.html and now for index.html) */
+.hero, .hero-trips { /* Apply to both hero classes */
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 60vh; /* Slightly taller hero for impact */
     overflow: hidden;
     margin-bottom: 2rem;
 }
 
-.hero img {
+.hero img, .hero-trips img {
     display: block;
     width: 100%;
     height: 100%;
@@ -120,55 +125,84 @@ header nav a:hover {
     padding: 1rem;
     text-align: center;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay for better text contrast */
 }
 
 .hero-content h1 {
-    /* Specific overrides for hero h1, using common h1 style for font/color */
-    position: static;
-    transform: none;
-    color: white; /* Override common h1 color for hero */
-    font-size: 3rem;
+    color: white;
+    font-size: 3.5rem; /* Larger hero heading */
     padding: 1rem 2rem;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7); /* Stronger background for heading */
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add text shadow for legibility */
 }
 
-/* Mission Statement now styled as an overlay element */
+.hero-message { /* For index.html hero message */
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-width: 80%;
+}
+
+/* Call to Action Button - applies to index.html and trips.html hero */
+.call-to-action {
+    background-color: var(--accent1-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.call-to-action:hover {
+    background-color: #CC6B1E; /* Slightly darker orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Mission Statement (about.html) */
 .mission-statement-overlay {
-    /* Specific styling, may share some with .white-section-box but rgba is unique */
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* More opaque */
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     max-width: 80%;
-    color: #333;
+    color: var(--primary-color); /* Use primary color for text */
     text-align: center;
+    margin-top: 1rem; /* Ensure it's not right up against the heading */
 }
 
 .mission-statement-overlay p {
     margin: 0;
     text-align: center;
+    font-size: 1.1rem;
 }
 
-/* History Section Styling - relies on .section-box in HTML */
+/* History Section (about.html) */
 .history-section {
     margin-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: center;
+    background-color: var(--secondary-color); /* Light background for section */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .history-section h2 {
-    font-size: 2rem; /* Specific override */
-    margin-bottom: 0.5rem;
+    font-size: 2.2rem; /* Specific override */
+    margin-bottom: 0.8rem;
     grid-column: 1 / -1;
 }
 
 .history-section p {
     text-align: justify;
+    color: var(--primary-color); /* Text color */
 }
 
 .history-section img {
@@ -177,24 +211,28 @@ header nav a:hover {
     border-radius: 8px;
     display: block;
     margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Adventure Section */
+/* Adventure Section (about.html) */
 .adventure-section h2 {
-    font-size: 2rem; /* Specific override */
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Image Grid for Adventure Section */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
 }
 
 .grid-container figure {
     margin: 0;
     text-align: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .grid-container img {
@@ -203,36 +241,49 @@ header nav a:hover {
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.grid-container img:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
 }
 
 .grid-container figcaption {
     font-family: var(--paragraph-font);
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-top: 0.75rem;
+    font-weight: 600;
 }
 
 /* --- STYLES FOR CONTACT.HTML --- */
 
-/* Contact Info Section - relies on .section-box in HTML */
+/* Contact Info Section */
 .contact-info {
     text-align: center;
     margin-bottom: 2rem;
+    background-color: #fff; /* White background for this section */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
 .contact-info h1 {
-    font-size: 2.5rem; /* Specific override */
-    margin-bottom: 1rem;
+    font-size: 2.8rem; /* Specific override */
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
 }
 
 .company-details p {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
 }
 
 .company-details a {
-    color: var(--accent1-color);
+    color: var(--accent2-color); /* Use accent2 for links */
     text-decoration: none;
+    font-weight: 600;
 }
 
 .company-details a:hover {
@@ -245,69 +296,86 @@ header nav a:hover {
     overflow: hidden;
     display: inline-block;
     max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .map-container iframe {
     width: 100%;
-    height: 300px;
+    height: 350px; /* Slightly taller map */
     border: 0;
 }
 
-/* Employee Profiles Section - relies on .white-section-box in HTML */
+/* Employee Profiles Section */
 .employee-profiles {
     margin-bottom: 2rem;
+    background-color: var(--secondary-color); /* Light background for employee section */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .employee-profiles h2 {
-    font-size: 2rem; /* Specific override */
-    margin-bottom: 1.5rem;
+    font-size: 2.2rem; /* Specific override */
+    margin-bottom: 1.8rem;
+    color: var(--primary-color);
 }
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Larger min-width for profiles */
+    gap: 2rem; /* Increased gap */
     justify-content: center;
 }
 
 .team-grid figure {
-    background-color: #f0f0f0;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background-color: #fff; /* White background for each figure */
+    padding: 1.5rem;
+    border-radius: 10px; /* Slightly more rounded */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Stronger shadow */
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team-grid figure:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
 .team-grid img {
-    width: 100%;
-    height: 200px;
+    width: 120px; /* Fixed smaller size for circular images */
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 0.75rem;
-    border: 3px solid var(--secondary-color);
+    margin-bottom: 1rem;
+    border: 4px solid var(--accent2-color); /* Accent border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .team-grid figcaption {
     font-family: var(--paragraph-font);
-    font-weight: 600;
-    color: var(--accent2-color);
-    font-size: 1rem;
+    font-weight: 700; /* Bolder caption */
+    color: var(--primary-color);
+    font-size: 1.1rem;
 }
 
-/* Contact Form Section - relies on .section-box in HTML */
+/* Contact Form Section */
 .contact-form {
     margin-bottom: 2rem;
+    background-color: #fff; /* White background for the form */
+    padding: 2rem; /* More padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
 .contact-form h2 {
-    font-size: 2rem; /* Specific override */
+    font-size: 2.2rem; /* Specific override */
     margin-bottom: 1.5rem;
+    color: var(--primary-color);
 }
 
 .contact-form form {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem; /* Increased gap */
     max-width: 600px;
     margin: 0 auto;
 }
@@ -317,39 +385,52 @@ header nav a:hover {
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.9rem; /* Slightly more padding */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px; /* Slightly more rounded */
     font-family: var(--paragraph-font);
     font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent2-color); /* Highlight on focus */
+    outline: none;
 }
 
 .contact-form textarea {
     resize: vertical;
+    min-height: 120px; /* Ensure minimum height */
 }
 
 .contact-form label {
     font-weight: bold;
     margin-bottom: 0.25rem;
-    color: var(--accent2-color);
+    color: var(--primary-color); /* Label color */
+    display: block; /* Make labels block level for better spacing */
 }
 
 .contact-form fieldset {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 1rem;
+    border: 1px solid var(--accent2-color); /* Accent border for fieldset */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
 }
 
 .contact-form legend {
     font-weight: bold;
-    color: var(--accent2-color);
-    padding: 0 0.5rem;
+    color: var(--primary-color);
+    padding: 0 0.75rem; /* More padding */
+    font-size: 1.1rem;
 }
 
 .purpose-radios label {
     font-weight: normal;
     margin-left: 0.5rem;
-    color: #333;
+    color: var(--primary-color);
+    display: inline-block; /* Keep radios and their labels inline */
 }
 
 .purpose-radios input[type="radio"] {
@@ -359,28 +440,196 @@ header nav a:hover {
 .newsletter-signup {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 0.75rem; /* Increased gap */
+    margin-top: 1rem;
 }
 
 .contact-form button[type="submit"] {
     background-color: var(--accent1-color);
     color: white;
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px; /* Pill shape like CTA */
+    font-size: 1.25rem;
+    font-family: var(--heading-font);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #CC6B1E; /* Slightly darker orange */
+    transform: translateY(-2px);
+}
+
+/* --- STYLES FOR INDEX.HTML (NEW) --- */
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.home-grid .purpose-section,
+.home-grid .offerings-section,
+.home-grid .newsletter-section {
+    text-align: center;
+}
+
+.home-grid h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.home-grid img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.home-grid p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding: 0 1rem; /* Add some padding to text */
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 400px;
+    margin: 1.5rem auto 0 auto;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.newsletter-form label {
+    align-self: flex-start;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.newsletter-form input[type="text"],
+.newsletter-form input[type="email"] {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.newsletter-form button[type="submit"] {
+    background-color: var(--accent2-color);
+    color: white;
+    padding: 0.9rem 1.5rem;
     border: none;
     border-radius: 5px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-family: var(--heading-font);
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 1rem;
 }
 
-.contact-form button[type="submit"]:hover {
-    background-color: #e64d00;
+.newsletter-form button[type="submit"]:hover {
+    background-color: #2a7ca5; /* Darker accent2 on hover */
 }
 
-/* Footer Styling */
+
+/* --- STYLES FOR TRIPS.HTML (NEW) --- */
+
+.hero-trips .call-to-action {
+    /* Specific styling for trips page hero CTA if needed, otherwise uses general */
+    margin-top: 2rem;
+}
+
+.trip-descriptions {
+    margin-top: 2rem;
+}
+
+.trips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for trip cards */
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.trip-card {
+    background-color: var(--secondary-color); /* Light background for cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.trip-card img {
+    width: 100%;
+    height: 250px; /* Consistent height for images */
+    object-fit: cover;
+    display: block; /* Remove extra space below image */
+    border-bottom: 3px solid var(--accent1-color); /* Accent line below image */
+}
+
+.trip-card h3 {
+    font-size: 1.6rem;
+    margin: 1.5rem 1rem 0.5rem 1rem;
+    color: var(--primary-color);
+}
+
+.trip-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 1.5rem;
+    color: var(--primary-color);
+}
+
+.trip-table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.trip-table-section th,
+.trip-table-section td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.trip-table-section th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.trip-table-section tbody tr:nth-child(even) {
+    background-color: var(--secondary-color); /* Alternate row color */
+}
+
+.trip-table-section tbody tr:hover {
+    background-color: #e0e0e0; /* Hover effect on table rows */
+}
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling on small screens if table is too wide */
+    margin-top: 1rem;
+}
+
+/* Footer Styling - Consistent across all pages */
 footer {
     background-color: var(--primary-color);
     color: white;
@@ -391,27 +640,30 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 1rem; /* Gap for wrap */
 }
 
 footer p {
     margin: 0;
     font-size: 0.9rem;
+    color: white; /* Ensure text is white on dark footer */
 }
 
 footer a {
-    color: var(--secondary-color);
+    color: var(--accent2-color); /* Accent color for footer links */
     text-decoration: none;
-    margin: 0 1rem;
+    margin: 0 0.5rem; /* Adjust margin for specific links in footer */
 }
 
 footer a:hover {
     text-decoration: underline;
+    color: #fff; /* White on hover for better contrast */
 }
 
 .socialmedia {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0; /* Reset margin as flex-wrap handles spacing */
 }
 
 .socialmedia a {
@@ -423,6 +675,8 @@ footer a:hover {
     height: 30px;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    background-color: white; /* Give social icons a white background to stand out */
+    padding: 3px; /* Small padding around icon */
 }
 
 .socialmedia img:hover {
@@ -431,44 +685,45 @@ footer a:hover {
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
+    /* Header */
+    header {
+        grid-template-columns: auto 1fr;
+    }
+    header nav {
+        justify-content: flex-end;
+    }
+
+    /* Hero */
     .hero-content h1 {
         font-size: 4rem;
     }
-    .mission-statement-overlay {
-        max-width: 60%;
+    .hero-message {
+        font-size: 1.4rem;
     }
 
+    /* About.html specific */
     .history-section {
         grid-template-columns: 1fr auto 1fr;
     }
-
     .history-section h2 {
         grid-column: 1 / -1;
     }
-
     .history-section p:first-of-type {
         grid-column: 1 / 2;
     }
-
     .history-section img {
         grid-column: 2 / 3;
         margin: 0;
     }
-
     .history-section p:last-of-type {
         grid-column: 3 / 4;
     }
 
-    .socialmedia {
-        margin-top: 0;
-    }
-
-    /* Contact Form specific adjustments for larger screens */
+    /* Contact.html specific */
     .contact-form form {
         grid-template-columns: 1fr 1fr;
         align-items: start;
     }
-
     .contact-form label[for="name"],
     .contact-form label[for="email"] {
         grid-column: auto;
@@ -477,26 +732,48 @@ footer a:hover {
     .contact-form input[type="email"] {
         grid-column: auto;
     }
-
     .contact-form fieldset {
         grid-column: 1 / -1;
     }
-
     .contact-form label[for="message"],
     .contact-form textarea {
         grid-column: 1 / -1;
     }
-
     .newsletter-signup {
         grid-column: 1 / -1;
         justify-self: start;
     }
-
     .contact-form button[type="submit"] {
         grid-column: 1 / -1;
         justify-self: center;
         width: auto;
         padding: 1rem 3rem;
+    }
+
+    /* Index.html specific */
+    .home-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two columns for larger screens */
+    }
+    .home-grid .newsletter-section {
+        grid-column: 1 / -1; /* Newsletter spans full width on desktop */
+    }
+    .newsletter-form {
+        flex-direction: row;
+        align-items: center;
+        max-width: 600px;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .newsletter-form label {
+        align-self: center;
+    }
+    .newsletter-form input {
+        flex-grow: 1;
+    }
+
+    /* Trips.html specific */
+    .trips-grid {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for trip cards on larger screens */
     }
 }
 
@@ -508,28 +785,40 @@ footer a:hover {
     header nav {
         margin-top: 1rem;
         justify-content: center;
+        gap: 1rem;
     }
-    .hero h1 {
-        font-size: 2rem;
-        padding: 0.5rem 1rem;
+    .hero-content h1 {
+        font-size: 2.5rem; /* Smaller for mobile */
+        padding: 0.8rem 1.5rem;
+    }
+    .hero-message {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+    .call-to-action {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
     }
     .mission-statement-overlay {
         padding: 1rem;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     footer {
         flex-direction: column;
+        gap: 0.75rem;
     }
     footer p {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0;
     }
     footer a {
-        margin: 0.5rem 0;
+        margin: 0.25rem 0;
     }
     .socialmedia {
-        margin-top: 0.5rem;
+        margin-top: 0;
+        gap: 0.75rem;
     }
 
+    /* Contact form specific for mobile */
     .contact-form input[type="radio"] + label,
     .contact-form input[type="checkbox"] + label {
         display: inline-block;
@@ -539,5 +828,14 @@ footer a:hover {
         flex-direction: row;
         align-items: center;
         margin-top: 0.5rem;
+    }
+
+    /* Table container for small screens */
+    .table-container {
+        width: 100%;
+        overflow-x: auto; /* Ensure table scrolls horizontally if too wide */
+    }
+    .trip-table-section table {
+        min-width: 500px; /* Minimum width to prevent excessive squishing */
     }
 }

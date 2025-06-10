@@ -95,7 +95,7 @@ header nav a:hover {
     color: white;
 }
 
-/* Hero Section (from about.html and now for index.html) */
+/* Hero Section (from about.html and now for index.html & trips.html) */
 .hero, .hero-trips { /* Apply to both hero classes */
     position: relative;
     width: 100%;
@@ -125,7 +125,17 @@ header nav a:hover {
     padding: 1rem;
     text-align: center;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay for better text contrast */
+    /* --- MODIFICATION FOR IMAGE BLENDING --- */
+    /* Overlay with primary color at 60% opacity */
+    background-color: rgba(var(--primary-color-rgb), 0.6); /* Use RGB for rgba */
+    /* Fallback if RGB variable is not defined, or for older browsers */
+    background-color: rgba(44, 62, 80, 0.6);
+}
+
+/* Define RGB values for primary color for use in rgba */
+:root {
+    --primary-color-rgb: 44, 62, 80; /* RGB values for #2C3E50 */
+    /* ... other variables ... */
 }
 
 .hero-content h1 {
@@ -133,12 +143,12 @@ header nav a:hover {
     font-size: 3.5rem; /* Larger hero heading */
     padding: 1rem 2rem;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.7); /* Stronger background for heading */
+    background-color: rgba(0, 0, 0, 0.4); /* Reduced opacity for heading background */
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add text shadow for legibility */
 }
 
-.hero-message { /* For index.html hero message */
+.hero-message { /* For index.html hero message and trips.html */
     color: white;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
